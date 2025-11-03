@@ -1,80 +1,56 @@
-
-
 public class Oppgaveoversikt {
-    
-    private Student[] studenter; 
-    private int antStud = 0;
+    private Student[] studenter;
+    private int antStud;
 
-    public Oppgaveoversikt(int maksAntallStudenter) {
-        studenter = new Student[maksAntallStudenter];
+    public Oppgaveoversikt(int maksAntall) {
+        studenter = new Student[maksAntall];
+        antStud = 0;
     }
 
-    public int finnAntStudenter() {
+    // Finn antall studenter registrert
+    public int getAntStud() {
         return antStud;
     }
 
-    public int finnAntOppgaver(String navn) {
+    // Finn antall oppgaver som en bestemt student har løst
+    public int finnAntOppg(String navn) {
         for (int i = 0; i < antStud; i++) {
             if (studenter[i].getNavn().equalsIgnoreCase(navn)) {
                 return studenter[i].getAntOppg();
             }
         }
-        return -1; // Ikke funnet
+        return -1; // returnerer -1 hvis studenten ikke finnes
     }
 
-    public boolean registrerNyStudent(String navn, int antOppg) {
-        if (antStud >= studenter.length) return false; // full tabell
-        if (finnStudent(navn) != null) return false;   // allerede registrert
-
-        studenter[antStud] = new Student(navn, antOppg);
-        antStud++;
-        return true;
-    }
-
-    public boolean okAntOppg(String navn, int okning) {
-        Student s = finnStudent(navn);
-        if (s != null) {
-            s.okAntOppg(okning);
-            return true;
+    // Registrer en ny student
+    public void registrerNyStudent(String navn, int antOppg) {
+        if (antStud < studenter.length) {
+            studenter[antStud] = new Student(navn, antOppg);
+            antStud++;
+        } else {
+            System.out.println("Ingen plass til flere studenter!");
         }
-        return false;
     }
 
-    private Student finnStudent(String navn) {
+    // Øk antall oppgaver for en bestemt student
+    public void okAntOppg(String navn, int okning) {
         for (int i = 0; i < antStud; i++) {
             if (studenter[i].getNavn().equalsIgnoreCase(navn)) {
-                return studenter[i];
+                studenter[i].okAntOppg(okning);
+                return;
             }
         }
-        return null;
+        System.out.println("Fant ikke studenten: " + navn);
     }
 
     @Override
     public String toString() {
-        String tekst = "Antall studenter: " + antStud + "\n";
+        String resultat = "Registrerte studenter:\n";
         for (int i = 0; i < antStud; i++) {
-            tekst += studenter[i].toString() + "\n";
+            resultat += (i + 1) + ". " + studenter[i].toString() + "\n";
         }
-        return tekst;
-    }
-
-
-
-    public static void main(String[] args) {
-        Oppgaveoversikt oversikt = new Oppgaveoversikt(10);
-
-        oversikt.registrerNyStudent("Ola", 3);
-        oversikt.registrerNyStudent("Kari", 5);
-        oversikt.registrerNyStudent("Per", 2);
-
-        System.out.println("Før oppdatering:\n" + oversikt);
-
-        oversikt.okAntOppg("Ola", 2);
-        oversikt.okAntOppg("Per", 4);
-
-        System.out.println("Etter oppdatering:\n" + oversikt);
-
-        System.out.println("Kari har løst " + oversikt.finnAntOppgaver("Kari") + " oppgaver.");
+        return resultat;
     }
 }
+
 

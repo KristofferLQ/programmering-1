@@ -1,6 +1,6 @@
 public class Student {
-    private String navn;   // entydig navn
-    private int antOppg;   // antall godkjente oppgaver
+    private String navn;     // entydig navn
+    private int antOppg;     // antall godkjente oppgaver
 
     public Student(String navn, int antOppg) {
         this.navn = navn;
@@ -23,6 +23,6 @@ public class Student {
 
     @Override
     public String toString() {
-        return navn + " har " + antOppg + " godkjente oppgaver.";
+        return navn + " har fått godkjent " + antOppg + " oppgaver.";
     }
 }
