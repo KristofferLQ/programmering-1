@@ -3,7 +3,6 @@ public class App {
 
 
     public static void main(String[] args) {
-        EiendomRegister register = new EiendomRegister();
         Scanner sc = new Scanner(System.in);
         int valg = 1;
         EiendomRegister reg = new EiendomRegister();
@@ -36,7 +35,7 @@ public class App {
                 sc.nextLine();
                 System.out.print("Eier: ");
                 String eier = sc.nextLine();
-                sc.nextLine();
+            
                 Eiendom e;
                 if (eier.length()==0){
                     e = new Eiendom(kommunenummer, kommunenavn, gnr, bnr, areal, eier);
@@ -44,6 +43,7 @@ public class App {
                 reg.leggTilEiendom(e);
                     break;
                 case 2:
+                reg.skriveutEiendom();
                     break;
                 case 3:
                 System.out.println("kommunenr?");
@@ -54,6 +54,7 @@ public class App {
                 sc.nextLine();
                     break;
                 case 4:
+                System.out.println("Gjennomsnittsarealet av eiendommene i registeret er "+reg.finneAreal()+" m2");
                     break;
                 case 0:
                     break;
