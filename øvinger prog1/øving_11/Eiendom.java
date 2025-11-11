@@ -32,4 +32,11 @@ public int getGnr(){
 public double getAreal(){
     return areal;
 }
+public String toString(){
+    return kommunenummer + "-" + gnr + "/" + bnr + 
+           "  (" + kommunenavn + ")  " +
+           "Bruksnavn: " + bruksnavn +
+           ", Areal: " + areal + " m²" +
+           ", Eier: " + eier;
+}
 }

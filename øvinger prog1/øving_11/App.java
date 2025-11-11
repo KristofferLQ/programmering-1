@@ -6,7 +6,16 @@ public class App {
         Scanner sc = new Scanner(System.in);
         int valg = 1;
         EiendomRegister reg = new EiendomRegister();
-        
+        reg.leggTilEiendom(new Eiendom(1445, "Gloppen", 77, 631, 1017.6, "Jens Olsen"));
+
+
+        reg.leggTilEiendom(new Eiendom(1445, "Gloppen", 77, 131, "Syningom", 661.3, "Nicolay Madsen"));
+
+        reg.leggTilEiendom(new Eiendom(1445, "Gloppen", 75, 19, "Fugletun", 650.6, "Evilyn Jensen"));
+
+
+        reg.leggTilEiendom(new Eiendom(1445, "Gloppen", 74, 188, 1457.2, "Karl Ove Bråten"));
+
         while (valg!=0) {
             System.out.println("----Meny----");
             System.out.println("0: Avslutt");
@@ -48,10 +57,19 @@ public class App {
                 case 3:
                 System.out.println("kommunenr?");
                 int kommunenr = sc.nextInt();
-                sc.nextLine();
-                System.out.println("gnr?");
+                System.out.println("Gnr?");
                 int Gnr = sc.nextInt();
-                sc.nextLine();
+                System.out.println("Bnr?");
+                int Bnr = sc.nextInt();
+
+                Eiendom funnet = reg.søkEtterEiendom(kommunenr, Gnr, Bnr);
+
+                if (funnet != null) {
+                    System.out.println("Fant eiendommen:");
+                    System.out.println(funnet);
+                    } else {
+                System.out.println("Ingen eiendom med disse verdiene.");
+                }
                     break;
                 case 4:
                 System.out.println("Gjennomsnittsarealet av eiendommene i registeret er "+reg.finneAreal()+" m2");

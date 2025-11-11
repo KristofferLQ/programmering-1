@@ -13,15 +13,14 @@ public class EiendomRegister{
     public Eiendom søkEtterEiendom(int Kommunenummer,int gnr, int bnr){
         for(Eiendom e : eiendommer){
             if (e.getKommunenummer()==Kommunenummer && e.getGnr()==gnr && e.getBnr()==bnr){
-                return e;
+                System.out.println(e); 
             }
             
-        }
-        return null;
+        }return null;
     }
     public void skriveutEiendom(){
         for(Eiendom e : eiendommer){
-            System.out.println(e);
+            System.out.println(e.toString());
         }
     }
     public double finneAreal(){
@@ -36,5 +35,3 @@ public class EiendomRegister{
         return areal;}
     
     }
-
-
